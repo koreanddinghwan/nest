@@ -35,7 +35,7 @@ export class AuthService {
     //return JWT token
     const { password, ...data } = DbUser
     return this.generateJwt({
-      data,
+      google_data: data,
     })
   }
 

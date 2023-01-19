@@ -40,8 +40,8 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
 
       //set req.user data
       const user = {
-        accessToken,
-        profile,
+        refreshToken,
+        g_profile: profile,
       }
       done(null, user)
     } catch (e) {

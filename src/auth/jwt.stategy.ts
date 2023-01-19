@@ -21,6 +21,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
   /*
    * Passport가 JWT signature를 확인하고 JSON을 디코딩한 후에, validate 메서드로 decoding된 JSON을 보낸다.
+   * 여기서, jwt확인을 해야하나?
    */
   async validate(payload: any, done: any) {
     return {
