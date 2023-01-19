@@ -16,9 +16,14 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
       callbackURL: process.env.GOOGLE_CALLBACK,
       passReqToCallback: true,
       scope: ['email'],
-      accessType: 'offline',
-      prompt: 'consent',
     })
+  }
+
+  authorizationParams(): { [key: string]: string } {
+    return {
+      access_type: 'offline',
+      prompt: 'consent',
+    }
   }
 
   validate(
