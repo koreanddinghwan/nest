@@ -4,7 +4,9 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 import { AppModule } from './app.module'
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule)
+  const app = await NestFactory.create(AppModule, {
+    logger: ['error', 'warn', 'log'],
+  })
   //모든 route 경로를 api를 붙인다.
   app.setGlobalPrefix('api')
 

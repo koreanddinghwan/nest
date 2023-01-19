@@ -24,4 +24,18 @@ export class UsersService {
   async findOneById(userId: number): Promise<User> {
     return await this.usersRepository.findOneBy({ userId })
   }
+
+  async registerUser(user: User) {
+    const id = await this.usersRepository
+      .createQueryBuilder()
+      .insert()
+      .into(User)
+      .values([
+        {
+          ...user,
+        },
+      ])
+      .execute()
+    return id.raw.insertId
+  }
 }

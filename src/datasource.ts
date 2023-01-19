@@ -1,5 +1,6 @@
 import 'reflect-metadata'
 import { DataSource } from 'typeorm'
+import { User } from './users/users.entity'
 
 export const AppDataSource = new DataSource({
   type: 'mysql',
@@ -8,7 +9,7 @@ export const AppDataSource = new DataSource({
   username: process.env.DBUSER,
   password: process.env.PASSWORD,
   database: process.env.DATABASE,
-  entities: [],
+  entities: [User],
   synchronize: true, //특정 조건하에서 모든 데이터를 삭제하는 것 같습니다. 프로덕션에서는 사용하지 않는게 좋습니다.
   logging: true,
 })

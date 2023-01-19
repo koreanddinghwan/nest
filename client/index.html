@@ -1,20 +1,22 @@
-<!DOCTYPE html>>
+<!DOCTYPE html>
 <html>
-	<head></head>
-	<body>
-<h1>Static website</h1>
-<ul>
-  <li><a href="/link-1">Link 1</a></li>
-  <li><a href="/link-2">Link 2</a></li>
-  <li><a href="/link-3">Link 3</a></li>
-  <form method="post" id="form" action="/api/auth/login">
-    <label for="username">username:</label>
-    <input type="text" id="username" name="username" /><br /><br />
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" /><br /><br />
-    <input type="submit" value="Submit" />
-  </form>
-</ul>
-</body>
-<script src="index.js">
+  <head>
+    <script defer="defer" type="module" src="index.js"></script>
+  </head>
+  <body>
+    <h1>Static website</h1>
+    <ul>
+      <li><a href="/link-1">Link 1</a></li>
+      <li><a href="/link-2">Link 2</a></li>
+      <li><a href="/link-3">Link 3</a></li>
+      <form method="post" id="form" action="/api/auth/login">
+        <label for="username">username:</label>
+        <input type="text" id="username" name="username" /><br /><br />
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" /><br /><br />
+        <input type="submit" value="Submit" />
+      </form>
+    </ul>
+  </body>
+  <button id="google">구글로 로그인</button>
 </html>
