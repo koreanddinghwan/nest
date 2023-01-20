@@ -2,7 +2,7 @@ import './dotenv'
 import { NestFactory } from '@nestjs/core'
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 import { AppModule } from './app.module'
-import cookieParser from 'cookie-parser'
+import * as cookieParser from 'cookie-parser'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -11,7 +11,8 @@ async function bootstrap() {
   //모든 route 경로를 api를 붙인다.
   app.setGlobalPrefix('api')
 
-  app.use(cookieParser())
+  //cookie parser는 option으로 secret key 받아서 파싱해줍니다.
+  app.use(cookieParser(process.env.JWTCONSTANTS))
 
   const config = new DocumentBuilder()
     .setTitle('Cats example')
