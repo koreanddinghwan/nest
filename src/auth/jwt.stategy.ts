@@ -16,6 +16,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
       secretOrKey: process.env.JWTCONSTANTS,
+      passReqToCallback: true,
     })
   }
 
@@ -24,6 +25,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
    * 여기서, jwt확인을 해야하나?
    */
   async validate(payload: any, done: any) {
+    console.log('payload: ', payload)
     return {
       ...payload,
     }

@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common'
 import { PassportStrategy } from '@nestjs/passport'
 import { Profile, Strategy } from 'passport-google-oauth20'
+import { User } from 'src/users/users.entity'
+import { LoginType } from './enum/loginType.enum'
 
 /*
  * google의 custom PassportStrategy를 정의한다.
@@ -19,6 +21,10 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     })
   }
 
+  /*
+   * set authorization param
+   * these params used for authorization server
+   * */
   authorizationParams(): { [key: string]: string } {
     return {
       access_type: 'offline',
@@ -34,15 +40,11 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     done: any
   ) {
     try {
-      console.log('accessToken: ', accessToken)
-      console.log('refreshToken: ', refreshToken)
-      console.log('profile: ', profile)
-
       //set req.user data
-      const user = {
-        refreshToken,
-        g_profile: profile,
-      }
+      const user = new User()
+      user.userName = profile.emails[0].value
+      user.loginType = LoginType.G
+      user.userNickName = user.userName + '_' + user.loginType
       done(null, user)
     } catch (e) {
       done(e, false)
