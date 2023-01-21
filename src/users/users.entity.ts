@@ -1,11 +1,12 @@
 import { Entity, Column, PrimaryGeneratedColumn, Unique } from 'typeorm'
+import { LoginType } from 'src/auth/enum/loginType.enum'
 
 @Entity()
 @Unique('unique_tbUser_userName', ['userName'])
 @Unique('unique_tbUser_userNickName', ['userNickName'])
 export class User {
-  @PrimaryGeneratedColumn({ primaryKeyConstraintName: 'pk_tbUser' })
-  userId: number
+  @PrimaryGeneratedColumn('uuid')
+  userId: string
 
   @Column({ type: 'char', length: 35, nullable: false })
   userName: string
@@ -21,15 +22,11 @@ export class User {
   })
   userProfilePhoto: string
 
-  /*
-   * this column is for test
-   * */
   @Column({
-    type: 'char',
-    length: 50,
-    nullable: false,
+    type: 'enum',
+    enum: LoginType,
   })
-  password: string
+  loginType: LoginType
 
   @Column({ type: 'float', nullable: false, default: '0' })
   userLevel: number
