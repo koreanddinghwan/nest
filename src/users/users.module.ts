@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common'
-import { TypeOrmModule } from '@nestjs/typeorm'
-import { User } from './users.entity'
 import { UsersService } from './users.service'
 import { UsersController } from './users.controller'
 
@@ -10,7 +8,7 @@ import { UsersController } from './users.controller'
    * 이 기능을 사용하면 @InjectRepository() decorator를 사용하여
    * UsersService에 UsersRepository를 삽입할 수 있습니다:
    * */
-  imports: [TypeOrmModule.forFeature([User])],
+  // imports: [TypeOrmModule.forFeature([User])],
   providers: [UsersService],
   controllers: [UsersController],
   //used in auth module

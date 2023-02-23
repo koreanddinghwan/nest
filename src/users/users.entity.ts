@@ -1,5 +1,4 @@
 import { Entity, Column, PrimaryGeneratedColumn, Unique } from 'typeorm'
-import { LoginType } from 'src/auth/enum/loginType.enum'
 
 @Entity()
 @Unique('unique_tbUser_userName', ['userName'])
@@ -24,9 +23,9 @@ export class User {
 
   @Column({
     type: 'enum',
-    enum: LoginType,
+    enum: ['Y', 'N'],
   })
-  loginType: LoginType
+  loginType: string
 
   @Column({ type: 'float', nullable: false, default: '0' })
   userLevel: number

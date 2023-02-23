@@ -14,6 +14,11 @@ async function bootstrap() {
   //cookie parser는 option으로 secret key 받아서 파싱해줍니다.
   app.use(cookieParser(process.env.JWTCONSTANTS))
 
+  app.enableCors({
+    origin: 'http://localhost:4000',
+    credentials: true,
+  })
+
   const config = new DocumentBuilder()
     .setTitle('Cats example')
     .setDescription('The cats API description')
